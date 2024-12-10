@@ -1,0 +1,7 @@
+tqdm
+mace_torch==0.3.6
+torch_dftd
+ase
+MDAnalysis
+fire
+jupyterlab

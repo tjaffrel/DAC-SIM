@@ -1,0 +1,12 @@
+format: jb-book
+root: intro
+parts:
+  - caption: Introduction
+    chapters:
+    - file: 0_introduction/introduction.md
+    - file: 0_introduction/install.md
+  - caption: Molecular Simulation
+    chapters:
+    - file: 1_molecular_simulation/widom_insertion.md
+    - file: 1_molecular_simulation/molecular_dynamics.md
+    - file: 1_molecular_simulation/geometry_optimization.md

@@ -1,0 +1,33 @@
+.vscode
+__pycache__
+
+# directory
+test/
+ocp/
+configs/
+checkpoints/
+examples/energy_threshold/
+old/
+jupyter_book/_build/
+mace_finetuning*/
+build/
+
+
+# files
+*.out
+*.pyc
+*.log
+*.traj
+*.json
+*.csv
+*.extxyz
+*.sh
+*.err
+*.slurm
+*.qsub*
+
+# development
+demo*
+dev*
+tmp*
+*.egg-info

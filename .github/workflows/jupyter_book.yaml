@@ -1,0 +1,46 @@
+name: Deploy Jupyter Book
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+
+jobs:
+  deploy_jupyter_book:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jupyter-book
+          pip install -e .
+
+      - name: Build Jupyter Book
+        run: |
+          jupyter-book build jupyter_book
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: "jupyter_book/_build/html"
+        
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+              
