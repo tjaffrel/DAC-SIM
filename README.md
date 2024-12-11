@@ -27,11 +27,11 @@ This package provides a simulation tool for Direct Air Capture (DAC) in Metal-Or
 
 ## Features
 
-- **Widom Insertion Monte Carlo Simulation**: Computes Henry's law coefficients (K$_{H}$), averaged interaction energy, and heat of adsorption in zero loading (Q$_{st}$) of gases with the machine learning force fields.
+- **Widom Insertion Monte Carlo Simulation**: Computes Henry's law coefficients (K<sub>H</sub>), averaged interaction energy, and heat of adsorption in zero loading (Q<sub>st</sub>) of gases with the machine learning force fields.
 - **Molecular Dynamics Simulation**: Calculates the diffusion coefficients of gas molecules with the machine learning force fields.
 - **Geometry Optimization**: Relax the structure with the machine learning force fields.
 - **High-Throughput Screening**: Efficient processing of multiple structures for large-scale simulations.
-- **Support for various gas molecules**: $\text{CO}_2$, $\text{H}_2\text{O}$, and more.
+- **Support for various gas molecules**: CO<sub>2</sub>, H<sub>2</sub>O, and more.
 - **Flexible usage**: Customizable command line interface and Python API.
 
 ## Installation
@@ -77,7 +77,7 @@ The detailed description of the command line options can be found by running `da
 
 #### (1) Widom insertion Monte Carlo simulation
 
-Perform Widom insertion Monte Carlo (MC) simulation to calculate K$_{H}$, averaged interaction energy, and Q$_{st}$ of gas molecules. The `WidomInsertion` class inherits from [`Dynamics`](https://github.com/qsnake/ase/blob/master/ase/optimize/optimize.py), an **ASE** class that manages the simulation of molecular dynamics. That is, it works in a same way of the **ASE Calculator**.
+Perform Widom insertion Monte Carlo (MC) simulation to calculate K<sub>H</sub>, averaged interaction energy, and Q<sub>st</sub> of gas molecules. The `WidomInsertion` class inherits from [`Dynamics`](https://github.com/qsnake/ase/blob/master/ase/optimize/optimize.py), an **ASE** class that manages the simulation of molecular dynamics. That is, it works in a same way of the **ASE Calculator**.
 
 ```python
 from ase.io import read
@@ -194,7 +194,7 @@ The detailed description of the command line options can be found by running
 
 #### (1) Widom insertion Monte Carlo simulation
 
-The following command performs Widom insertion MC simulation to calculate K$_{H}$, averaged interaction energy and Q$_{st}$ of gas molecules on CIF files in the `examples` directory. The results are saved in the `results` directory.
+The following command performs Widom insertion MC simulation to calculate K<sub>H</sub>, averaged interaction energy and Q<sub>st</sub> of gas molecules on CIF files in the `examples` directory. The results are saved in the `results` directory.
 
 ```bash
 dac-sim widom examples/ --gas=CO2 --temperature=300 --num_insertions=5000 --fold=2 --save_dir=results
