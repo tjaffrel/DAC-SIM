@@ -192,7 +192,7 @@ The detailed description of the command line options can be found by running
 - `dac-sim md --help`
 - `dac-sim opt --help`
 
-#### (1) Widom insertion simulation
+#### (1) Widom insertion Monte Carlo simulation
 
 The following command performs Widom insertion MC simulation to calculate K$_{H}$, averaged interaction energy and Q$_{st}$ of gas molecules on CIF files in the `examples` directory. The results are saved in the `results` directory.
 
