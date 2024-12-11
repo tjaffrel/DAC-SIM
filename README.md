@@ -27,8 +27,8 @@ This package provides a simulation tool for Direct Air Capture (DAC) in Metal-Or
 
 ## Features
 
-- **Widom Insertion Simulation**: Computes Henry's coefficients and chemical potentials of gases with the machine learning force fields.
-- **Molecular Dynamics simulation**: Calculates the diffusion coefficients of gas molecules with the machine learning force fields.
+- **Widom Insertion Monte Carlo Simulation**: Computes Henry's law coefficients (K$_{H}$), averaged interaction energy, and heat of adsorption in zero loading (Q$_{st}$) of gases with the machine learning force fields.
+- **Molecular Dynamics Simulation**: Calculates the diffusion coefficients of gas molecules with the machine learning force fields.
 - **Geometry Optimization**: Relax the structure with the machine learning force fields.
 - **High-Throughput Screening**: Efficient processing of multiple structures for large-scale simulations.
 - **Support for various gas molecules**: $\text{CO}_2$, $\text{H}_2\text{O}$, and more.
@@ -75,9 +75,9 @@ The detailed description of the command line options can be found by running `da
 
 ---
 
-#### (1) Widom insertion simulation
+#### (1) Widom insertion Monte Carlo simulation
 
-Perform Widom insertion simulation to calculate the Henry coefficient and chemical potential of gas molecules. The `WidomInsertion` class inherits from [`Dynamics`](https://github.com/qsnake/ase/blob/master/ase/optimize/optimize.py), an **ASE** class that manages the simulation of molecular dynamics. That is, it works in a same way of the **ASE Calculator**.
+Perform Widom insertion Monte Carlo (MC) simulation to calculate K$_{H}$, averaged interaction energy, and Q$_{st}$ of gas molecules. The `WidomInsertion` class inherits from [`Dynamics`](https://github.com/qsnake/ase/blob/master/ase/optimize/optimize.py), an **ASE** class that manages the simulation of molecular dynamics. That is, it works in a same way of the **ASE Calculator**.
 
 ```python
 from ase.io import read
@@ -184,7 +184,7 @@ opt_structure = go.run(structure)
 
 ---
 
-`DAC-SIM` provides CLI commands for running Widom insertion, molecular dynamics, and geometry optimization simulations. The CLI commands can be used to perform simulations with a single CIF file or a directory containing multiple CIF files.
+`DAC-SIM` provides CLI commands for running Widom insertion MC, molecular dynamics, and geometry optimization simulations. The CLI commands can be used to perform simulations with a single CIF file or a directory containing multiple CIF files.
 
 The detailed description of the command line options can be found by running
 
@@ -194,7 +194,7 @@ The detailed description of the command line options can be found by running
 
 #### (1) Widom insertion simulation
 
-The following command performs Widom insertion simulation to calculate the Henry coefficient and chemical potential of gas molecules on CIF files in the `examples` directory. The results are saved in the `results` directory.
+The following command performs Widom insertion MC simulation to calculate K$_{H}$, averaged interaction energy and Q$_{st}$ of gas molecules on CIF files in the `examples` directory. The results are saved in the `results` directory.
 
 ```bash
 dac-sim widom examples/ --gas=CO2 --temperature=300 --num_insertions=5000 --fold=2 --save_dir=results
@@ -207,7 +207,7 @@ dac-sim widom examples/ --gas=CO2 --temperature=300 --num_insertions=5000 --fold
 The following command performs molecular dynamics simulation to calculate the diffusion coefficient and transport properties of gas molecules on CIF files in the `examples` directory. The results are saved in the `results` directory.
 
 ```bash
-dac-sim md examples --gas_list="CO2,H2O" --timesteps=1.0 --temperature=300 --num_steps=1000 --save_dir=results
+dac-sim md examples --gas_list="CO2,H2O" --timesteps=1.0 --temperature=300 --num_md_steps=1000 --save_dir=results
 ```
 
 #### (3) Geometry optimization
