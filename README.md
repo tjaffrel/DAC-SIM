@@ -10,10 +10,10 @@
 
 <p align="center">
  <a href="https://hspark1212.github.io/DAC-SIM/">
-     <img alt="Docs" src="https://img.shields.io/badge/Docs-v0.0.1-brightgreen.svg?style=plastic">
+     <img alt="Docs" src="https://img.shields.io/badge/Docs-v0.0.3-brightgreen.svg?style=plastic">
  </a>
   <a href="https://pypi.org/project/dac-sim">
-     <img alt="PyPI" src="https://img.shields.io/badge/PyPI-v0.0.1-blue.svg?style=plastic&logo=PyPI">
+     <img alt="PyPI" src="https://img.shields.io/badge/PyPI-v0.0.3-blue.svg?style=plastic&logo=PyPI">
  </a>
  <a href="">
      <img alt="DOI" src="https://img.shields.io/badge/DOI-doi-organge.svg?style=plastic">
@@ -39,6 +39,12 @@ This package provides a simulation tool for Direct Air Capture (DAC) in Metal-Or
 ### Requirements
 
 - Python 3.10 or later
+
+```bash
+conda create -n dac-sim python=3.10
+conda activate dac-sim
+```
+
 - Pytorch >= 1.12 (install from the [official website](https://pytorch.org/) suitable for your environment)
 
 >[!NOTE]
@@ -51,8 +57,6 @@ This package provides a simulation tool for Direct Air Capture (DAC) in Metal-Or
 To install the latest version from [PyPI](https://pypi.org/project/dac-sim/):
 
 ```bash
-conda create -n dac-sim python=3.10
-conda activate dac-sim
 pip install dac-sim
 ```
 
