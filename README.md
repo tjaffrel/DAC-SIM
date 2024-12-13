@@ -226,7 +226,8 @@ dac-sim opt examples --num_total_optimization=100 --num_internal_steps=50 --num_
 
 ## Citation
 
-If you use `DAC-SIM` in your research, please cite the following preprint:
+If you find this package useful, please consider citing our work:
+["Accelerating CO2 Direct Air Capture Screening for Metal-Organic Frameworks with a Transferable Machine Learning Force Field"](https://doi.org/10.26434/chemrxiv-2024-7w6g6)
 
 ```bibtex
 @article{Lim2024accelerating,
