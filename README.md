@@ -15,7 +15,7 @@
   <a href="https://pypi.org/project/dac-sim">
      <img alt="PyPI" src="https://img.shields.io/badge/PyPI-v0.0.3-blue.svg?style=plastic&logo=PyPI">
  </a>
- <a href="">
+ <a href="https://doi.org/10.26434/chemrxiv-2024-7w6g6">
      <img alt="DOI" src="https://img.shields.io/badge/DOI-doi-organge.svg?style=plastic">
  </a>
  <a href="https://github.com/hspark1212/DAC-SIM/blob/main/LICENSE">
@@ -223,6 +223,20 @@ dac-sim opt examples --num_total_optimization=100 --num_internal_steps=50 --num_
 ```
 
 </details>
+
+## Citation
+
+If you use `DAC-SIM` in your research, please cite the following preprint:
+
+```bibtex
+@article{Lim2024accelerating,
+    title={Accelerating CO2 Direct Air Capture Screening for Metal-Organic Frameworks with a Transferable Machine Learning Force Field},
+    author={Lim, Yunsung and Park, Hyunsoo and Walsh, Aron and Kim, Jihan},
+    journal={ChemRxiv},
+    doi={10.26434/chemrxiv-2024-7w6g6},
+    year={2024},
+}
+```
 
 ## Contributing 🙌
 
