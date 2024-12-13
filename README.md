@@ -9,6 +9,9 @@
 </div>
 
 <p align="center">
+ <a href="https://hspark1212.github.io/DAC-SIM-project/">
+     <img alt="project-page" src="https://img.shields.io/badge/Project-Page-orange.svg?style=plastic">
+ </a>
  <a href="https://hspark1212.github.io/DAC-SIM/">
      <img alt="Docs" src="https://img.shields.io/badge/Docs-v0.0.3-brightgreen.svg?style=plastic">
  </a>
