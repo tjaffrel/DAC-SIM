@@ -1,7 +1,7 @@
 <div align="center">
   <h1 style="color: #ffffff; font-size: 2em; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">DAC-SIM</h1>
   <p style="color: #dddddd; font-size: 1.2em; font-weight: bold;">
-    Universal Machine Learning Force Fields in Metal-Organic Frameworks for Direct Air Capture
+    A molecular simulation package integrating a transferable Machine Learning Force Field in Metal-Organic Frameworks for CO<sub>2</sub> Direct Air Capture
   </p>
   <p>
     <img src="./images/logo.jpg" width="300" style="border-radius: 10px;">
@@ -120,7 +120,7 @@ print(result)
 
 Perform molecular dynamics simulation to calculate the diffusion coefficient and transport properties of gas molecules using [ASE molecular dynamics](https://wiki.fysik.dtu.dk/ase/ase/md/md.html).
 
-The `MolecularDyamic` class involves setting intial configuration of gas molecules in the accessible sites of the structure using [`add_gas_in_accessible_positions`](https://github.com/hspark1212/DAC-SIM/blob/57aad4f2122f30553d43adc4287453a0568b8023/dac_sim/grid.py#L11) function.
+The `MolecularDyamic` class involves setting intial configuration of gas molecules in the accessible sites of the structure using [`add_gas_in_accessible_positions`](https://github.com/hspark1212/DAC-SIM/blob/main/dac_sim/grid.py#L85) function.
 
 ```python
 from ase.io import read
@@ -230,7 +230,7 @@ dac-sim opt examples --num_total_optimization=100 --num_internal_steps=50 --num_
 ## Citation
 
 If you find this package useful, please consider citing our work:
-["Accelerating CO2 Direct Air Capture Screening for Metal-Organic Frameworks with a Transferable Machine Learning Force Field"](https://doi.org/10.26434/chemrxiv-2024-7w6g6)
+["Accelerating CO<sub>2</sub> Direct Air Capture Screening for Metal-Organic Frameworks with a Transferable Machine Learning Force Field"](https://doi.org/10.26434/chemrxiv-2024-7w6g6)
 
 ```bibtex
 @article{Lim2024accelerating,
