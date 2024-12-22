@@ -18,6 +18,7 @@ from dac_sim.optimize import optimize_atoms
 from dac_sim import DEFAULT_MODEL_PATH
 
 
+
 class WidomInsertion(Dynamics):
     def __init__(
         self,
@@ -33,6 +34,8 @@ class WidomInsertion(Dynamics):
         device: Literal["cuda", "cpu"] = "cuda",
         default_dtype: Literal["float32", "float64"] = "float32",
         dispersion: bool = True,
+        gpu_preprocessing: bool = True,
+        calculator_type: Literal["mace_mp", "fennix"] = "fennix",
     ):
         """
         Widom insertion algorithm to calculate the Henry coefficient and heat of adsorption.
@@ -68,13 +71,14 @@ class WidomInsertion(Dynamics):
         self.temperature = temperature
         self.init_structure_optimize = init_structure_optimize
         self.init_gas_optimize = init_gas_optimize
+        self.calculator_type = calculator_type
 
         # Check device availability
         device = self._configure_device(device)
 
         # Set up calculator
         self.calculator = self._initialize_calculator(
-            model_path, device, default_dtype, dispersion
+            calculator_type, model_path, device, default_dtype, dispersion, gpu_preprocessing
         )
 
         super().__init__(
@@ -101,22 +105,36 @@ class WidomInsertion(Dynamics):
 
     def _initialize_calculator(
         self,
+        calculator_type: str,
         model_path: Optional[str],
         device: Literal["cuda", "cpu"],
         default_dtype: Literal["float32", "float64"],
         dispersion: bool,
+        gpu_preprocessing: bool
     ):
         model_path = Path(model_path) if model_path else Path(DEFAULT_MODEL_PATH)
         if not model_path.exists():
             raise FileNotFoundError(f"Model file not found: {model_path}")
-        print(f"Using model at: {model_path}")
-        return mace_mp(
-            model=model_path,
-            device=device,
-            default_dtype=default_dtype,
-            dispersion=dispersion,
-        )
-
+        
+        if calculator_type == "fennix":
+            from fennol.ase import FENNIXCalculator
+            print(f"Using FENNIXCalculator with model: {model_path}")
+            return FENNIXCalculator(
+                model=model_path,
+                verbose=True,
+                gpu_preprocessing=gpu_preprocessing,
+            )
+        elif calculator_type == "mace_mp":
+            print(f"Using mace_mp with model: {model_path}")
+            return mace_mp(
+                model=model_path,
+                device=device,
+                default_dtype=default_dtype,
+                dispersion=dispersion,
+            )
+        else:
+            raise ValueError("Unsupported calculator type. Choose 'mace_mp' or 'fennix'.")
+        
     def todict(self):
         return {
             "type": "widom-insertion",

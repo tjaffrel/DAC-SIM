@@ -25,6 +25,8 @@ class GeometryOptimization:
         device: Literal["cuda", "cpu"] = "cuda",
         default_dtype: Literal["float32", "float64"] = "float32",
         dispersion: bool = True,
+        gpu_preprocessing: bool = True,
+        calculator_type: Literal["mace_mp", "fennix"] = "fennix",
     ):
         """Geometry optimization using the FIRE algorithm
 
@@ -58,13 +60,15 @@ class GeometryOptimization:
         self.device = device
         self.default_dtype = default_dtype
         self.dispersion = dispersion
+        self.calculator_type = calculator_type
+
 
         # Configure device
         device = self._configure_device(device)
 
         # Set up calculator
         self.calculator = self._initialize_calculator(
-            model_path, device, default_dtype, dispersion
+            calculator_type, model_path, device, default_dtype, dispersion, gpu_preprocessing
         )
 
     def _configure_device(self, device: str) -> str:
@@ -77,21 +81,35 @@ class GeometryOptimization:
 
     def _initialize_calculator(
         self,
+        calculator_type: str,
         model_path: Optional[str],
         device: Literal["cuda", "cpu"],
         default_dtype: Literal["float32", "float64"],
         dispersion: bool,
+        gpu_preprocessing: bool
     ):
         model_path = Path(model_path) if model_path else Path(DEFAULT_MODEL_PATH)
         if not model_path.exists():
             raise FileNotFoundError(f"Model file not found: {model_path}")
-        print(f"Using model at: {model_path}")
-        return mace_mp(
-            model=model_path,
-            device=device,
-            default_dtype=default_dtype,
-            dispersion=dispersion,
-        )
+        
+        if calculator_type == "fennix":
+            print(f"Using FENNIXCalculator with model: {model_path}")
+            from fennol.ase import FENNIXCalculator
+            return FENNIXCalculator(
+                model=model_path,
+                verbose=True,
+                gpu_preprocessing=gpu_preprocessing,
+            )
+        elif calculator_type == "mace_mp":
+            print(f"Using mace_mp with model: {model_path}")
+            return mace_mp(
+                model=model_path,
+                device=device,
+                default_dtype=default_dtype,
+                dispersion=dispersion,
+            )
+        else:
+            raise ValueError("Unsupported calculator type. Choose 'mace_mp' or 'fennix'.")
 
     def run(self, atoms: Atoms, trajectory_file: Optional[str] = None):
         """Perform geometry optimization.
@@ -121,7 +139,7 @@ def optimize_atoms(
     num_total_optimization: int = 30,
     num_internal_steps: int = 50,
     num_cell_steps: int = 50,
-    fmax: float = 0.05,
+    fmax: float = 0.1,
     cell_relax: bool = True,
     trajectory_file: Optional[str] = None,
 ) -> Optional[Atoms]:
