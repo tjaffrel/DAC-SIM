@@ -329,6 +329,8 @@ class WidomInsertion(Dynamics):
 
             # U = < E * exp(-E/RT) > / <exp(-E/RT)> # [eV]
             u = (interaction_energies * boltzmann_factor).sum() / boltzmann_factor.sum()
+            uptake = boltzmann_factor.sum() / num_insertions 
+            pressure = uptake / kh  
 
             # Qst = U - RT # [kJ/mol]
             qst = (u * units._e - units._k * self.temperature) * units._Nav * 1e-3
@@ -336,6 +338,7 @@ class WidomInsertion(Dynamics):
             results["henry_coefficient"].append(kh)
             results["averaged_interaction_energy"].append(u)
             results["heat_of_adsorption"].append(qst)
+            results["pressure"].append(pressure)
             self.log_results(results)
         return results
 
