@@ -335,9 +335,12 @@ class WidomInsertion(Dynamics):
             # Qst = U - RT # [kJ/mol]
             qst = (u * units._e - units._k * self.temperature) * units._Nav * 1e-3
 
+            print(f"Fold {i+1}: Henry Coefficient = {kh:.6f} mol/kg Pa, Qst = {qst:.6f} kJ/mol, Uptake = {uptake:.6f} mol/g, Pressure = {pressure:.6f} Pa")
+
             results["henry_coefficient"].append(kh)
             results["averaged_interaction_energy"].append(u)
             results["heat_of_adsorption"].append(qst)
+            results["uptake"].append(uptake)
             results["pressure"].append(pressure)
             self.log_results(results)
         return results
